@@ -90,18 +90,31 @@ namespace TestProject1
 
         internal static bool FoundElementAfterSorted(List<int> list, int value)
         {
+    
+            for (int i = 1; i < list.Count; i++)
+            {
+                int current = list[i];
+                int j = i - 1;
 
-            list.Sort();
+        
+                while (j >= 0 && list[j] > current)
+                {
+                    list[j + 1] = list[j];
+                    j--;
+                }
+                list[j + 1] = current;
+            }
 
+    
             foreach (int item in list)
             {
                 if (item == value)
                 {
                     return true;
                 }
-                
                 else if (item > value)
                 {
+            
                     return false;
                 }
             }
